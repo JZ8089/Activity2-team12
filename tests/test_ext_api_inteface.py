@@ -30,3 +30,15 @@ class TestExtApiInterface(unittest.TestCase):
     def test_get_ebooks(self):
         self.api.make_request = Mock(return_value=self.json_data)
         self.assertEqual(self.api.get_ebooks(self.book), self.books_data)
+
+    def test_get_ebooks_false(self):
+        self.api.make_request = Mock(return_value=None)
+        self.assertEqual(self.api.get_ebooks("doesnt exist"), [])
+        
+    def test_is_book_available_true(self):
+        self.api.make_request = Mock(return_value=self.json_data)
+        self.assertEqual(self.api.is_book_available(self.book),True)
+        
+    def test_is_book_available_false(self):
+        self.api.make_request = Mock(return_value=None)
+        self.assertEqual(self.api.is_book_available("doesnt exist"),False)
