@@ -21,7 +21,7 @@ class Patron:
         :param memberID: the ID for the Patron in the library's system
         """
 
-        if re.search('\d', fname) or re.search('\d', lname):
+        if re.search(r'\d', fname) or re.search(r'\d', lname):
             raise InvalidNameException("Name should not contain numbers")
         self.fname = fname
         self.lname = lname
